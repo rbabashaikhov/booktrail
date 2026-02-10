@@ -8,7 +8,7 @@ import { ProgressBar } from '../components/books/ProgressBar'
 import { BottomSheet } from '../components/ui/BottomSheet'
 import { Input } from '../components/ui/Input'
 import { Alert } from '../components/ui/Alert'
-import type { BookStatus } from '../types'
+import type { BookStatus, UserBook } from '../types'
 
 const STATUS_OPTIONS: { value: BookStatus; label: string }[] = [
   { value: 'planning', label: 'Planning' },
@@ -32,8 +32,8 @@ export function BookDetailsPage() {
     )
   }
 
-  const userBook = userBooks.find((b) => b.id === id) ?? null
-  if (!userBook) {
+  const found = userBooks.find((b) => b.id === id) ?? null
+  if (!found) {
     return (
       <div className="p-4">
         <Alert variant="error" title="Not found">
@@ -46,6 +46,7 @@ export function BookDetailsPage() {
     )
   }
 
+  const userBook: UserBook = found
   const total = userBook.book.numberOfPages ?? 0
 
   function handleStatusChange(status: BookStatus) {

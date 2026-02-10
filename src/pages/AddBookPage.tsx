@@ -44,7 +44,7 @@ export function AddBookPage() {
     setFailedIsbn(null)
     const result = isbnSchema.safeParse(isbnInput.trim())
     if (!result.success) {
-      setIsbnError(result.error.errors[0]?.message ?? 'Invalid ISBN')
+      setIsbnError(result.error.issues[0]?.message ?? 'Invalid ISBN')
       fetchMutation.reset()
       return
     }

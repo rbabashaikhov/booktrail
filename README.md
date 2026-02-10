@@ -1,73 +1,116 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 📚 BookTrail
 
-Currently, two official plugins are available:
+**BookTrail** — это минималистичное мобильное веб‑приложение (PWA) для ведения дневника прочитанных книг и отслеживания прогресса чтения.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Проект решает реальную проблему: многие книги (особенно российские издания) **не находятся в международных открытых каталогах по ISBN**. BookTrail честно учитывает это ограничение и предлагает удобный ручной сценарий добавления книг.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ✨ Возможности MVP
 
-## Expanding the ESLint configuration
+- 🔎 **Добавление книги по ISBN**
+  - Автоматический поиск в открытых каталогах
+  - Умная обработка ошибок, если книга не найдена
+- ✍️ **Ручное добавление книги**
+  - Чистый fallback‑сценарий без костылей
+  - Подсказка, где найти данные о книге (включая каталог РГБ)
+- 📖 **Отслеживание прогресса чтения**
+  - Текущая страница
+  - Процент прочитанного (если известно количество страниц)
+- 🗂 **Личная библиотека**
+  - Статусы: *В планах / Читаю / Прочитано*
+  - Поиск по названию и автору
+- 📊 **Базовая статистика**
+  - Сколько книг прочитано и читается сейчас
+- 💾 **Локальное хранение данных**
+  - Работает без бэкенда
+  - Данные не теряются при перезагрузке страницы
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🧠 Продуктовая логика
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+BookTrail использует гибридную модель:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1. **Автоматический поиск по ISBN** — если книга есть в открытых базах  
+2. **Ручной ввод** — если книга не индексируется (частый случай для RU‑изданий)
+
+Это осознанное продуктовое решение:
+- без нелегального парсинга,
+- без сломанных сценариев,
+- с честным UX.
+
+---
+
+## 🛠 Технологический стек
+
+### Frontend
+- **React + TypeScript**
+- **Vite**
+- **Tailwind CSS**
+- **React Router**
+- **TanStack Query**
+- **Zod** (валидация форм)
+
+### Архитектура
+- Чёткое разделение слоёв: pages / components / services / storage
+- Типобезопасная модель данных
+- Готовность к масштабированию (IndexedDB / Supabase в будущем)
+
+---
+
+## 📱 UI / UX
+
+- Mobile‑first дизайн
+- Минималистичные карточки и bottom‑sheet взаимодействия
+- Обязательные состояния:
+  - loading
+  - empty
+  - error
+- Доступность (labels, aria, focus states)
+
+---
+
+## 🚀 Запуск проекта локально
+
+```bash
+git clone https://github.com/rbabashaikhov/booktrail.git
+cd booktrail
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Открой в браузере:  
+👉 `http://localhost:5173`
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🏷 Версия
+
+**v0.1.0‑mvp**  
+Первый завершённый MVP с рабочим end‑to‑end сценарием:
+ISBN → библиотека → прогресс чтения → ручной fallback.
+
+---
+
+## 🔮 Что дальше (не в MVP)
+
+- Сканирование штрих‑кода
+- Синхронизация между устройствами
+- Заметки и цитаты
+- Рекомендации и цели чтения
+
+---
+
+## 👤 Автор
+
+**Руслан Бабашаихов**  
+Senior Web Analytics & AI Enthusiast  
+
+- GitHub: https://github.com/rbabashaikhov
+- Website: https://leadmeter.ru
+
+---
+
+> BookTrail — это MVP, сделанный с упором на реальный пользовательский сценарий, а не на идеальный мир данных.

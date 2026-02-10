@@ -1,0 +1,39 @@
+# Cursor Rules — ui-ux.mdc
+
+## UI goals
+Create a modern, minimal, mobile-first interface with clear visual hierarchy
+and predictable interactions.
+
+## Mobile-first
+- Design for mobile first (360–430px).
+- Touch targets >= 44px.
+- Use vertical layouts and avoid dense UI.
+
+## Design system
+- Use a consistent spacing system (8px base).
+- Reuse shared components: Button, Input, Card, Tabs, BottomNav, Modal.
+- Keep border radius, shadows, and typography consistent.
+
+## Accessibility (mandatory)
+- Semantic HTML elements.
+- Proper labels for inputs.
+- `aria-label` for icon buttons.
+- Visible focus states.
+- Keyboard navigation for modals and forms.
+
+## UI states (mandatory)
+Every screen must support:
+- Loading (skeleton)
+- Empty state
+- Error state (clear, human-readable)
+- Success feedback
+
+## Performance
+- Optimize images.
+- Avoid layout shifts.
+- Keep animations subtle and optional.
+
+## Content tone
+- Clear, short text.
+- Avoid jargon.
+- Errors must explain what went wrong and what to do next.

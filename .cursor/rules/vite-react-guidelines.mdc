@@ -1,0 +1,30 @@
+# Cursor Rules — vite-react-guidelines.mdc
+
+## Framework conventions
+- Use Vite + React + TypeScript.
+- Use functional components and React hooks.
+- Avoid unnecessary dependencies and heavy libraries.
+
+## Routing
+- Use `react-router-dom`.
+- Pages must be placed in `src/pages`.
+- Routes should be simple and explicit.
+
+## State management
+- Prefer local component state for UI.
+- Use TanStack Query for async data and caching.
+- Avoid global state unless necessary.
+
+## Data fetching
+- All API calls must be placed in `src/services`.
+- Components must not fetch data directly via `fetch`.
+- Handle loading and error states explicitly.
+
+## Performance
+- Keep components small and focused.
+- Avoid unnecessary re-renders.
+- Memoize only when there is a clear performance benefit.
+
+## Environment & config
+- Use `import.meta.env` for environment variables.
+- Do not hardcode environment-specific values.

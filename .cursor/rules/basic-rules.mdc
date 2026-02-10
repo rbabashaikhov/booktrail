@@ -1,0 +1,41 @@
+# Cursor Rules — basic-rules.mdc
+
+## Goal
+Write clean, predictable, safe, and maintainable TypeScript code.
+Prefer clarity and explicitness over clever abstractions.
+
+## Core principles
+- Use TypeScript everywhere. No `any`. Use `unknown` + type narrowing when needed.
+- Prefer simple, readable solutions. Avoid premature abstractions.
+- Avoid code duplication: extract reusable logic when it appears more than once.
+- One file = one responsibility.
+- Prefer explicit naming over short or ambiguous names.
+
+## Code style
+- Use consistent formatting (Prettier).
+- Follow ESLint rules strictly. Do not disable rules unless absolutely necessary and explained.
+- Use early returns to reduce nesting.
+- Prefer `const` over `let`. Avoid mutation when possible.
+
+## Safety & correctness
+- Validate all external input (e.g. ISBN, page numbers).
+- Handle loading, error, empty, and success states explicitly.
+- Never assume API fields exist — always null-check.
+- Avoid runtime crashes and uncaught promise rejections.
+
+## Architecture (Vite + React)
+- `src/pages` — full screens (routes)
+- `src/components` — reusable UI components
+- `src/services` — API clients (Open Library)
+- `src/lib` — pure helpers (validation, formatting)
+- `src/store` — app state (if needed)
+- `src/styles` — global styles / Tailwind config
+
+## Data layer
+- Keep all Open Library API mapping and normalization in `services/`.
+- Store normalized book data in local storage / IndexedDB.
+- UI components must not depend on raw API responses.
+
+## Testing (light MVP)
+- Write unit tests only for critical logic when explicitly requested.
+- Prefer deterministic, side-effect-free functions.
